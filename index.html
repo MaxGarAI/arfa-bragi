@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>«АРФА БРАГИ» — Крафтовая пивоварня & Раки | Майкоп</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Крафтовая пивоварня собственного производства «АРФА БРАГИ» и чертог свежих раков в Майкопе. Авторское пиво: Солнце домов, Берег мечей, Волшебный трут. Живые и варёные раки. 📍 ул. Победа, 171.">
+  <meta name="keywords" content="Арфа Браги, крафтовое пиво Майкоп, пивоварня Майкоп, живые раки Майкоп, вареные раки, Победа 171, Солнце домов, Берег мечей, Волшебный трут">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="«АРФА БРАГИ» — Крафтовая пивоварня и раки в Майкопе">
+  <meta property="og:description" content="Собственное производство крафтового эля и свежайшие раки. «Хочешь узнать человека — либо сразись с ним, либо выпей с ним».">
+  <meta property="og:image" content="store_facade.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="emblem_gold.png">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Embers Canvas -->
+  <canvas id="canvas-embers"></canvas>
+
+  <!-- Age Verification Modal (18+) -->
+  <div class="modal-overlay" id="ageModal">
+    <div class="age-modal-box">
+      <img src="emblem_gold.png" alt="Герб Арфа Браги" class="modal-emblem">
+      <h3 class="viking-title text-gradient-gold">Чертог «АРФА БРАГИ»</h3>
+      <p>По древним законам Севера и законам РФ, чертог открыт лишь тем, кто достиг совершеннолетия (18+).<br>Достиг ли ты возраста Одина?</p>
+      <div class="modal-actions">
+        <button class="btn btn-gold" id="btnAgeAccept">Мне есть 18 лет</button>
+        <button class="btn btn-outline" id="btnAgeReject">Мне меньше 18</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand-link">
+        <img src="emblem_gold.png" alt="Арфа Браги" class="nav-emblem">
+        <div class="brand-text">
+          <span class="brand-title">АРФА БРАГИ</span>
+          <span class="brand-subtitle">Крафт & Раки • Майкоп</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#assortment">Пивная карта</a></li>
+          <li><a href="#brewery">О пивоварне</a></li>
+          <li><a href="#crayfish">Чертог Раков</a></li>
+          <li><a href="#store">Магазин</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-right">
+        <div class="status-badge" id="statusBadge">
+          <span class="status-dot"></span>
+          <span id="statusText">Открыто до 20:00</span>
+        </div>
+        <a href="tel:+79024069009" class="btn btn-outline btn-sm">
+          📞 +7 902 406 90 09
+        </a>
+        <button class="burger-btn" id="burgerBtn" aria-label="Меню">
+          <div class="burger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="hero-logo-box">
+        <img src="logo_gold.png" alt="Логотип Арфа Браги" class="hero-logo-img">
+      </div>
+
+      <h1 class="hero-title">
+        СКАЗАНИЯ СЕВЕРА <br>
+        <span class="text-gradient-gold">В КАЖДОЙ ПИНТЕ</span>
+      </h1>
+
+      <div class="hero-manifesto">
+        <p class="hero-manifesto-text">
+          «По легенде викингов: если хочешь узнать человека — <br>
+          <span>либо сразись с ним, либо выпей с ним</span>»
+        </p>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#assortment" class="btn btn-gold">
+          🍺 Пивная карта
+        </a>
+        <a href="#crayfish" class="btn btn-crayfish">
+          🦞 Живые и варёные раки
+        </a>
+        <a href="#contacts" class="btn btn-outline">
+          📍 ул. Победа, 171
+        </a>
+      </div>
+
+      <div class="hero-stats-grid">
+        <div class="stat-item">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Собственный крафт</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">3 СОРТА</span>
+          <span class="stat-label">Авторская рецептура</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">ЖИВЫЕ</span>
+          <span class="stat-label">Раки из аквариума</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">11:00 – 20:00</span>
+          <span class="stat-label">Ежедневно для воинов</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Beer Assortment -->
+  <section id="assortment" class="beer-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">ᛋ Авторское производство</span>
+        <h2 class="section-title">ЧЕРТОГ <span class="text-gradient-gold">КРАФТА</span></h2>
+        <p class="section-desc">
+          Честный непастеризованный крафт, сваренный по канонам северного терпения в собственных сверкающих танках. Никаких концентратов и консервантов.
+        </p>
+      </div>
+
+      <div class="beer-grid">
+        <!-- Beer 1 -->
+        <div class="beer-card" data-name="Солнце домов">
+          <div class="beer-card-img-wrap">
+            <img src="beer_solnce.jpg" alt="Пиво Солнце домов" class="beer-card-img">
+            <span class="beer-badge">Классическое</span>
+            <div class="beer-price-tag">145 ₽ / л</div>
+          </div>
+          <div class="beer-card-body">
+            <h3 class="beer-title">СОЛНЦЕ ДОМОВ</h3>
+            <div class="beer-style">Светлый лагер • Классика</div>
+            <p class="beer-desc">
+              Золотистый, кристально чистый лагер с мягким зерновым телом и благородным цветочным шлейфом хмеля. Освежает, как утренний бриз фьордов.
+            </p>
+            <div class="beer-specs">
+              <div>
+                <div class="spec-val">4.5%</div>
+                <div class="spec-lbl">Крепость</div>
+              </div>
+              <div>
+                <div class="spec-val">11%</div>
+                <div class="spec-lbl">Плотность</div>
+              </div>
+              <div>
+                <div class="spec-val">18 IBU</div>
+                <div class="spec-lbl">Горечь</div>
+              </div>
+            </div>
+            <div class="beer-pairing">
+              <strong>Гастропара:</strong> Идеально подчеркивает вкус классических варёных раков с укропом.
+            </div>
+            <div class="beer-card-footer">
+              <div class="beer-qty-ctrl">
+                <button class="qty-btn qty-minus" aria-label="Меньше">−</button>
+                <span class="qty-val">1</span>
+                <button class="qty-btn qty-plus" aria-label="Больше">+</button>
+              </div>
+              <button class="btn btn-gold btn-sm btn-add-beer">В предзаказ</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beer 2 -->
+        <div class="beer-card" data-name="Берег мечей">
+          <div class="beer-card-img-wrap">
+            <img src="beer_bereg.jpg" alt="Пиво Берег мечей" class="beer-card-img">
+            <span class="beer-badge">Пшеничное</span>
+            <div class="beer-price-tag">155 ₽ / л</div>
+          </div>
+          <div class="beer-card-body">
+            <h3 class="beer-title">БЕРЕГ МЕЧЕЙ</h3>
+            <div class="beer-style">Нефильтрованное • Weizen</div>
+            <p class="beer-desc">
+              Плотное туманное пшеничное пиво с бархатистой кремовой шапкой. В букете раскрываются ноты банана, гвоздики и свежеиспеченного хлеба.
+            </p>
+            <div class="beer-specs">
+              <div>
+                <div class="spec-val">4.8%</div>
+                <div class="spec-lbl">Крепость</div>
+              </div>
+              <div>
+                <div class="spec-val">12%</div>
+                <div class="spec-lbl">Плотность</div>
+              </div>
+              <div>
+                <div class="spec-val">14 IBU</div>
+                <div class="spec-lbl">Горечь</div>
+              </div>
+            </div>
+            <div class="beer-pairing">
+              <strong>Гастропара:</strong> Прекрасно сочетается с крупными сочными раками и сырными снеками.
+            </div>
+            <div class="beer-card-footer">
+              <div class="beer-qty-ctrl">
+                <button class="qty-btn qty-minus" aria-label="Меньше">−</button>
+                <span class="qty-val">1</span>
+                <button class="qty-btn qty-plus" aria-label="Больше">+</button>
+              </div>
+              <button class="btn btn-gold btn-sm btn-add-beer">В предзаказ</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beer 3 -->
+        <div class="beer-card" data-name="Волшебный трут">
+          <div class="beer-card-img-wrap">
+            <img src="beer_trut.jpg" alt="Пиво Волшебный трут" class="beer-card-img">
+            <span class="beer-badge">Карамельное</span>
+            <div class="beer-price-tag">167 ₽ / л</div>
+          </div>
+          <div class="beer-card-body">
+            <h3 class="beer-title">ВОЛШЕБНЫЙ ТРУТ</h3>
+            <div class="beer-style">Полутемный эль • Caramel Amber</div>
+            <p class="beer-desc">
+              Глубокий медно-янтарный цвет. Насыщенный вкус с карамельной сладостью жженого солода, теплыми бисквитными тонами и пряным послевкусием.
+            </p>
+            <div class="beer-specs">
+              <div>
+                <div class="spec-val">5.2%</div>
+                <div class="spec-lbl">Крепость</div>
+              </div>
+              <div>
+                <div class="spec-val">13%</div>
+                <div class="spec-lbl">Плотность</div>
+              </div>
+              <div>
+                <div class="spec-val">22 IBU</div>
+                <div class="spec-lbl">Горечь</div>
+              </div>
+            </div>
+            <div class="beer-pairing">
+              <strong>Гастропара:</strong> Изумительно гармонирует с раками фирменной варки в темном пиве.
+            </div>
+            <div class="beer-card-footer">
+              <div class="beer-qty-ctrl">
+                <button class="qty-btn qty-minus" aria-label="Меньше">−</button>
+                <span class="qty-val">1</span>
+                <button class="qty-btn qty-plus" aria-label="Больше">+</button>
+              </div>
+              <button class="btn btn-gold btn-sm btn-add-beer">В предзаказ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Brewery & Philosophy -->
+  <section id="brewery" class="brewery-section">
+    <div class="container">
+      <div class="brewery-layout">
+        <div class="brewery-text">
+          <span class="section-tag">ᚺ Традиции & Качество</span>
+          <h2>СИЛА БРАГИ: <br><span class="text-gradient-gold">СТАЛЬ И СТРУНЫ ВДОХНОВЕНИЯ</span></h2>
+          <p class="brewery-p">
+            В скандинавском пантеоне <strong>Браги</strong> — бог скальдов, красноречия и хмельного вдохновения. Под звуки его золотой арфы рождались саги, скреплялись союзы и чествовались герои.
+          </p>
+          <p class="brewery-p">
+            Мы перенесли этот священный дух в Майкоп. Наше пиво варится в стерильных танках из пищевой нержавеющей стали, строго выдерживается положенный срок и подается свежим, словно первый глоток победы.
+          </p>
+
+          <div class="brewery-features">
+            <div class="feat-card">
+              <span class="feat-icon">🌾</span>
+              <h4 class="feat-title">Отборный солод</h4>
+              <p class="feat-desc">Лучшие сорта ячменного и пшеничного солода для насыщенного и чистого тела.</p>
+            </div>
+            <div class="feat-card">
+              <span class="feat-icon">🌿</span>
+              <h4 class="feat-title">Ароматный хмель</h4>
+              <p class="feat-desc">Благородные хмели, дарящие напитку искристый баланс горечи и аромата.</p>
+            </div>
+            <div class="feat-card">
+              <span class="feat-icon">💧</span>
+              <h4 class="feat-title">Чистейшая вода</h4>
+              <p class="feat-desc">Мягкая вода предгорий Кавказа, прошедшая многоступенчатую водоподготовку.</p>
+            </div>
+            <div class="feat-card">
+              <span class="feat-icon">⚡</span>
+              <h4 class="feat-title">Честное созревание</h4>
+              <p class="feat-desc">Без ускорения процессов и консервантов. Только живые дрожжи и природный газ.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="brewery-media">
+          <div class="media-frame">
+            <img src="brewery_tanks.png" alt="Варочные танки пивоварни Арфа Браги">
+            <div class="media-tag-badge">
+              <span>Собственное производство</span>
+              <strong>Стальные варочные танки полного цикла</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Crayfish (Чертог Раков) -->
+  <section id="crayfish" class="crayfish-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" style="color: var(--crayfish-bright); border-color: rgba(192,57,43,0.3); background: rgba(192,57,43,0.1);">ᚱ Свежий улов</span>
+        <h2 class="section-title">ЧЕРТОГ <span class="text-gradient-crayfish">РАКОВ</span></h2>
+        <p class="section-desc">
+          Живые раки из проточных стеклянных аквариумов и фирменная варка. Закажите заранее — сварим горячими ровно к вашему приезду!
+        </p>
+      </div>
+
+      <div class="crayfish-layout">
+        <div class="media-frame">
+          <img src="crayfish_aquarium.png" alt="Оливковые раки в стеклянном аквариуме Арфа Браги">
+          <div class="media-tag-badge" style="border-color: var(--crayfish-bright);">
+            <span style="color: var(--crayfish-bright);">Всегда в наличии</span>
+            <strong>Чистый проточный аквариум</strong>
+          </div>
+        </div>
+
+        <!-- Crayfish Calculator -->
+        <div class="crayfish-calc-card">
+          <h3>РАССЧИТАТЬ & ЗАКАЗАТЬ</h3>
+          <p class="crayfish-calc-subtitle">Выберите калибр, способ приготовления и вес:</p>
+
+          <!-- Type Selector -->
+          <div class="calc-group">
+            <label class="calc-label">Способ приготовления</label>
+            <div class="calc-options-row">
+              <button class="calc-option-btn calc-type-btn active" data-type="Варёные">🔥 Сварить с травами</button>
+              <button class="calc-option-btn calc-type-btn" data-type="Живые">🌊 Живые на вес</button>
+            </div>
+          </div>
+
+          <!-- Caliber Selector -->
+          <div class="calc-group">
+            <label class="calc-label">Калибр раков</label>
+            <div class="calibers-grid">
+              <div class="caliber-btn" data-caliber="Средний">
+                <span class="caliber-name">Средний</span>
+                <span class="caliber-detail">30–50 г / шт</span>
+                <span class="caliber-price">1 500 ₽/кг</span>
+              </div>
+              <div class="caliber-btn active" data-caliber="Крупный">
+                <span class="caliber-name">Крупный</span>
+                <span class="caliber-detail">50–70 г / шт</span>
+                <span class="caliber-price">2 100 ₽/кг</span>
+              </div>
+              <div class="caliber-btn" data-caliber="Отборный">
+                <span class="caliber-name">Отборный</span>
+                <span class="caliber-detail">70–90+ г / шт</span>
+                <span class="caliber-price">2 800 ₽/кг</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weight Slider -->
+          <div class="calc-group">
+            <label class="calc-label">Вес улова</label>
+            <div class="weight-selector">
+              <input type="range" min="1" max="10" step="0.5" value="2" class="weight-slider" id="crayfishWeightSlider">
+              <span class="weight-display" id="crayfishWeightDisplay">2 кг</span>
+            </div>
+          </div>
+
+          <!-- Total Calculation -->
+          <div class="calc-total-box">
+            <span class="calc-total-label">Ориентировочная сумма:</span>
+            <span class="calc-total-val" id="crayfishTotalPrice">4 400 ₽</span>
+          </div>
+
+          <button class="btn btn-crayfish" id="btnOrderCrayfish" style="width: 100%;">
+            🦞 Добавить раков к заказу
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Store & Atmosphere -->
+  <section id="store" class="store-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">ᛗ Майкоп, ул. Победа, 171</span>
+        <h2 class="section-title">АТМОСФЕРА <span class="text-gradient-gold">МАГАЗИНА</span></h2>
+        <p class="section-desc">
+          Уютный чертог с культурой правильного розлива, охлаждаемой камерой хранения и приветливыми скальдами за стойкой.
+        </p>
+      </div>
+
+      <div class="store-grid">
+        <div class="store-card">
+          <img src="store_facade.jpg" alt="Фасад пивоварни Арфа Браги на ул. Победа, 171">
+          <div class="store-card-overlay">
+            <h3>ФАСАД И УЮТНЫЙ ДВОРИК</h3>
+            <p>Удобный подъезд и парковка для вашего драккара на ул. Победа, 171.</p>
+          </div>
+        </div>
+
+        <div class="store-card">
+          <img src="store_opening.png" alt="Интерьер магазина Арфа Браги">
+          <div class="store-card-overlay">
+            <h3>ЧЕРТОГ РОЗЛИВА</h3>
+            <p>Чистые охлаждаемые краны, свежий розлив прямо из кег под давлением.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Location & Contacts -->
+  <section id="contacts" class="location-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">ᛟ Всегда рады гостям</span>
+        <h2 class="section-title">КАК НАС <span class="text-gradient-gold">НАЙТИ</span></h2>
+        <p class="section-desc">
+          Приезжайте за свежим крафтом и раками или закажите доставку/предзаказ ко времени!
+        </p>
+      </div>
+
+      <div class="location-layout">
+        <!-- Contact Card -->
+        <div class="contact-card">
+          <h3 class="viking-title text-gradient-gold" style="font-size: 1.6rem; margin-bottom: 8px;">АРФА БРАГИ</h3>
+          <p style="color: var(--steel-muted); font-size: 0.95rem;">Пивоварня • Розлив • Живые & варёные раки</p>
+
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <div class="contact-info-title">Адрес чертога</div>
+                <div class="contact-info-val">г. Майкоп, ул. Победа, 171</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">🕚</div>
+              <div>
+                <div class="contact-info-title">Режим работы</div>
+                <div class="contact-info-val">Ежедневно: с 11:00 до 20:00</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div>
+                <div class="contact-info-title">Телефон для связи и заказов</div>
+                <a href="tel:+79024069009" class="contact-info-val">+7 902 406 90 09</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <a href="https://yandex.com/maps/-/CXBue6ne" target="_blank" rel="noopener" class="btn btn-gold" style="width: 100%;">
+              🗺 Открыть на Яндекс.Картах
+            </a>
+            <a href="tel:+79024069009" class="btn btn-outline" style="width: 100%;">
+              📞 Позвонить в чертог
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Map Preview -->
+        <div class="map-wrapper">
+          <iframe 
+            class="map-iframe"
+            src="https://yandex.ru/map-widget/v1/?ll=40.093121%2C44.620247&z=16&pt=40.093121,44.620247,pm2rdm"
+            title="Яндекс Карта — Арфа Браги, Майкоп, ул. Победа 171"
+            allowfullscreen="true">
+          </iframe>
+          <div class="map-direct-banner">
+            <div>
+              <strong style="color: #fff; font-size: 0.9rem;">г. Майкоп, ул. Победа, 171</strong>
+              <div style="color: var(--gold-bright); font-size: 0.75rem;">Крафтовая пивоварня «АРФА БРАГИ»</div>
+            </div>
+            <a href="https://yandex.com/maps/-/CXBue6ne" target="_blank" rel="noopener" class="btn btn-gold btn-sm">
+              Маршрут
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Cart Button -->
+  <button class="cart-floating-btn" id="cartFloatingBtn">
+    <span>🛡 Предзаказ</span>
+    <span class="cart-counter-bubble" id="cartCounter">0</span>
+  </button>
+
+  <!-- Order Modal -->
+  <div class="order-modal" id="orderModal">
+    <div class="order-modal-box">
+      <button class="modal-close-btn" id="closeOrderModal">&times;</button>
+      <h3 class="viking-title text-gradient-gold">Ваш Рог Изобилия</h3>
+      <p style="color: var(--steel-muted); font-size: 0.9rem; margin-top: 4px;">Предзаказ в пивоварню «АРФА БРАГИ»</p>
+
+      <div class="order-summary-list" id="orderSummaryList">
+        <!-- Generated via app.js -->
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0 24px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.08);">
+        <span style="font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase;">Итого:</span>
+        <span id="orderFinalPrice" style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 900; color: var(--gold-bright);">0 ₽</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <button class="btn btn-gold" id="orderWhatsAppBtn" style="width: 100%;">
+          💬 Отправить заказ в WhatsApp
+        </button>
+        <button class="btn btn-outline" id="orderCallBtn" style="width: 100%;">
+          📞 Позвонить +7 902 406 90 09
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="warning-18-bar">
+        ЧРЕЗМЕРНОЕ УПОТРЕБЛЕНИЕ АЛКОГОЛЯ ВРЕДИТ ВАШЕМУ ЗДОРОВЬЮ. ПРОДАЖА ОСУЩЕСТВЛЯЕТСЯ ЛИЦАМ СТАРШЕ 18 ЛЕТ.
+      </div>
+
+      <div class="footer-top">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <img src="emblem_gold.png" alt="Арфа Браги" style="width: 44px; height: 44px; object-fit: contain;">
+          <div>
+            <div style="font-family: var(--font-heading); font-weight: 800; color: #fff; font-size: 1.1rem;">АРФА БРАГИ</div>
+            <div style="color: var(--gold-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">Крафтовая пивоварня & Раки</div>
+          </div>
+        </div>
+
+        <div style="color: var(--steel-muted); font-size: 0.85rem; text-align: right;">
+          📍 г. Майкоп, ул. Победа, 171 <br>
+          📞 <a href="tel:+79024069009" style="color: #fff; text-decoration: none;">+7 902 406 90 09</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 «АРФА БРАГИ». Все права защищены.</div>
+        <div style="letter-spacing: 0.3em; color: var(--gold-dim); font-size: 0.9rem;">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
