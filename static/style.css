@@ -1,0 +1,1577 @@
+/* ==========================================================================
+   АРФА БРАГИ — Скандинавская крафтовая пивоварня & Раки
+   Brutalist Nordic Craft Brewery Stylesheet
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Montserrat:wght@300;400;500;600;700;800&family=Unbounded:wght@400;600;700;800;900&display=swap');
+
+:root {
+  /* Brand Palette */
+  --bg-darkest: #07080a;
+  --bg-main: #0d0f13;
+  --bg-surface: #14171d;
+  --bg-surface-elevated: #1a1e26;
+  --bg-glass: rgba(20, 23, 29, 0.78);
+  --bg-glass-card: rgba(26, 30, 38, 0.72);
+
+  /* Gold / Amber Beer Accents */
+  --gold-primary: #e5a93c;
+  --gold-secondary: #d49326;
+  --gold-bright: #ffc453;
+  --gold-dim: #946c24;
+  --gold-glow: rgba(229, 169, 60, 0.28);
+  --gold-glow-intense: rgba(229, 169, 60, 0.45);
+
+  /* Crayfish Ruby Accents */
+  --crayfish-red: #c0392b;
+  --crayfish-bright: #e74c3c;
+  --crayfish-dark: #801f16;
+  --crayfish-glow: rgba(192, 57, 43, 0.35);
+
+  /* Steely & Rune Grays */
+  --steel-light: #d8dde6;
+  --steel-muted: #8b95a5;
+  --steel-dark: #2a303c;
+  --border-subtle: rgba(229, 169, 60, 0.18);
+  --border-strong: rgba(229, 169, 60, 0.42);
+
+  /* Status */
+  --status-open: #2ecc71;
+  --status-closed: #e74c3c;
+
+  /* Typography */
+  --font-heading: 'Unbounded', sans-serif;
+  --font-viking: 'Cinzel Decorative', serif;
+  --font-body: 'Montserrat', sans-serif;
+
+  /* Layout */
+  --container-max: 1240px;
+  --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset & Smooth Scroll */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-darkest);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--steel-light);
+  background-color: var(--bg-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-darkest);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--steel-dark);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-secondary);
+}
+
+/* Subtle Nordic Texture & Ambient Embers */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(229, 169, 60, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(192, 57, 43, 0.04) 0%, transparent 45%);
+}
+
+#canvas-embers {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.65;
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.text-gold {
+  color: var(--gold-primary);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #ffffff 0%, var(--gold-bright) 50%, var(--gold-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-crayfish {
+  background: linear-gradient(135deg, #ffffff 0%, var(--crayfish-bright) 50%, var(--crayfish-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.viking-title {
+  font-family: var(--font-viking);
+  letter-spacing: 0.05em;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Section Common Styling */
+section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  background: rgba(229, 169, 60, 0.1);
+  border: 1px solid var(--border-subtle);
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  max-width: 680px;
+  margin: 0 auto;
+  color: var(--steel-muted);
+  font-size: 1.05rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 14px 26px;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-secondary) 100%);
+  color: #0c0d10;
+  box-shadow: 0 4px 20px var(--gold-glow);
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--gold-glow-intense);
+  color: #000;
+}
+
+.btn-crayfish {
+  background: linear-gradient(135deg, var(--crayfish-bright) 0%, var(--crayfish-dark) 100%);
+  color: #fff;
+  box-shadow: 0 4px 20px var(--crayfish-glow);
+}
+.btn-crayfish:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(192, 57, 43, 0.6);
+  color: #fff;
+}
+
+.btn-outline {
+  background: rgba(20, 23, 29, 0.6);
+  border: 1px solid var(--border-subtle);
+  color: var(--steel-light);
+  backdrop-filter: blur(8px);
+}
+.btn-outline:hover {
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+  background: rgba(229, 169, 60, 0.08);
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   Age Verification Modal (18+)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 5, 7, 0.94);
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.modal-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.age-modal-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  max-width: 520px;
+  width: 100%;
+  padding: 44px 36px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px var(--gold-glow);
+}
+
+.age-modal-box::before {
+  content: 'ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ';
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  letter-spacing: 0.4em;
+  color: var(--gold-dim);
+  opacity: 0.6;
+}
+
+.modal-emblem {
+  width: 90px;
+  height: 90px;
+  margin: 10px auto 20px;
+  display: block;
+  filter: drop-shadow(0 0 16px var(--gold-glow));
+}
+
+.age-modal-box h3 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.age-modal-box p {
+  color: var(--steel-muted);
+  font-size: 0.95rem;
+  margin-bottom: 30px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Navigation Bar
+   ========================================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(13, 15, 19, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: var(--transition);
+}
+
+.navbar.scrolled {
+  background: rgba(9, 10, 13, 0.96);
+  border-bottom-color: var(--border-strong);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 84px;
+  transition: height 0.3s ease;
+}
+
+.navbar.scrolled .nav-container {
+  height: 70px;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.nav-emblem {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.brand-link:hover .nav-emblem {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.brand-subtitle {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--steel-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: var(--transition);
+  position: relative;
+  padding: 6px 0;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #fff;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--steel-light);
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--status-open);
+  box-shadow: 0 0 8px var(--status-open);
+  animation: pulse-dot 2s infinite;
+}
+
+.status-badge.closed .status-dot {
+  background-color: var(--status-closed);
+  box-shadow: 0 0 8px var(--status-closed);
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.burger-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: #fff;
+}
+
+.burger-icon {
+  width: 26px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.burger-icon span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero-section {
+  min-height: 100vh;
+  padding-top: 130px;
+  padding-bottom: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at center, rgba(30, 36, 48, 0.4) 0%, rgba(7, 8, 10, 0.98) 75%),
+              url('store_opening.png') center/cover no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 8, 10, 0.8) 0%, rgba(13, 15, 19, 0.92) 65%, var(--bg-main) 100%);
+  pointer-events: none;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 4;
+}
+
+.hero-logo-box {
+  margin-bottom: 28px;
+  display: inline-block;
+  animation: fadeInDown 0.8s ease backwards;
+}
+
+.hero-logo-img {
+  max-width: clamp(360px, 55vw, 600px);
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 35px var(--gold-glow)) drop-shadow(0 0 70px rgba(229, 169, 60, 0.25));
+  transition: transform 0.4s ease;
+}
+
+.hero-logo-img:hover {
+  transform: scale(1.02);
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.hero-manifesto {
+  background: rgba(20, 24, 32, 0.7);
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-strong);
+  padding: 18px 24px;
+  margin: 28px auto 36px;
+  max-width: 760px;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.hero-manifesto-text {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.hero-manifesto-text span {
+  color: var(--gold-primary);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.hero-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  background: rgba(14, 16, 21, 0.8);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 24px 20px;
+  backdrop-filter: blur(12px);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-item:last-child {
+  border-right: none;
+}
+
+.stat-num {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--gold-primary);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--steel-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Beer Assortment Section (Чертог Крафта)
+   ========================================================================== */
+.beer-section {
+  background-color: var(--bg-main);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.beer-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.beer-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  position: relative;
+}
+
+.beer-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-primary);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75), 0 0 30px var(--gold-glow);
+}
+
+.beer-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 3196 / 599;
+  max-height: 250px;
+  overflow: hidden;
+  position: relative;
+  background: #07080a;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beer-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.beer-card:hover .beer-card-img {
+  transform: scale(1.01);
+}
+
+.beer-badge {
+  display: none;
+}
+
+.beer-price-tag {
+  display: none;
+}
+
+.beer-card-body {
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.9fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.beer-col-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.beer-title {
+  font-size: 1.45rem;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.beer-style {
+  font-size: 0.85rem;
+  color: var(--gold-bright);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.beer-desc {
+  font-size: 0.92rem;
+  color: var(--steel-muted);
+  line-height: 1.5;
+}
+
+.beer-col-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.beer-specs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: rgba(10, 12, 16, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.spec-val {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.spec-lbl {
+  font-size: 0.65rem;
+  color: var(--steel-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.beer-pairing {
+  background: rgba(192, 57, 43, 0.08);
+  border-left: 3px solid var(--crayfish-bright);
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.82rem;
+  color: var(--steel-light);
+}
+
+.beer-pairing strong {
+  color: var(--crayfish-bright);
+}
+
+.beer-col-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+.beer-card-price-prominent {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--gold-bright);
+  text-align: right;
+  line-height: 1;
+}
+
+.beer-card-price-unit {
+  font-size: 0.8rem;
+  color: var(--steel-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+  text-align: right;
+}
+
+.beer-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  width: 100%;
+}
+
+
+.beer-qty-ctrl {
+  display: flex;
+  align-items: center;
+  background: var(--bg-darkest);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  width: 34px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.qty-btn:hover {
+  background: rgba(229, 169, 60, 0.15);
+  color: var(--gold-primary);
+}
+
+.qty-val {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  width: 32px;
+  text-align: center;
+  color: #fff;
+}
+
+/* ==========================================================================
+   Brewery Craft / Philosophy Section
+   ========================================================================== */
+.brewery-section {
+  background: radial-gradient(circle at 80% 30%, rgba(229, 169, 60, 0.04) 0%, transparent 60%),
+              var(--bg-darkest);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.brewery-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.brewery-text h2 {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.brewery-p {
+  color: var(--steel-muted);
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.brewery-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.feat-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 20px;
+  transition: var(--transition);
+}
+
+.feat-card:hover {
+  border-color: var(--gold-primary);
+  transform: translateY(-3px);
+}
+
+.feat-icon {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.feat-title {
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.feat-desc {
+  font-size: 0.85rem;
+  color: var(--steel-muted);
+  line-height: 1.4;
+}
+
+.brewery-media {
+  position: relative;
+}
+
+.media-frame {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px var(--gold-glow);
+}
+
+.media-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.media-frame:hover img {
+  transform: scale(1.03);
+}
+
+.media-tag-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(13, 15, 19, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 12px 18px;
+  color: #fff;
+}
+
+.media-tag-badge span {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.media-tag-badge strong {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+}
+
+/* ==========================================================================
+   Crayfish Section (Чертог Раков)
+   ========================================================================== */
+.crayfish-section {
+  background: radial-gradient(circle at 15% 40%, rgba(192, 57, 43, 0.08) 0%, transparent 60%),
+              var(--bg-main);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.crayfish-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.crayfish-calc-card {
+  background: var(--bg-surface);
+  border: 1px solid rgba(192, 57, 43, 0.35);
+  border-radius: 14px;
+  padding: 36px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px var(--crayfish-glow);
+}
+
+.crayfish-calc-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.crayfish-calc-subtitle {
+  color: var(--steel-muted);
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+
+.calc-group {
+  margin-bottom: 22px;
+}
+
+.calc-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--steel-light);
+  margin-bottom: 10px;
+}
+
+.calc-options-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.calc-option-btn {
+  background: var(--bg-darkest);
+  border: 1px solid var(--border-subtle);
+  color: var(--steel-light);
+  padding: 12px;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.calc-option-btn.active {
+  background: rgba(192, 57, 43, 0.2);
+  border-color: var(--crayfish-bright);
+  color: #fff;
+  box-shadow: 0 0 15px var(--crayfish-glow);
+}
+
+.calibers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.caliber-btn {
+  background: var(--bg-darkest);
+  border: 1px solid var(--border-subtle);
+  color: var(--steel-light);
+  padding: 14px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.caliber-btn.active {
+  background: rgba(229, 169, 60, 0.15);
+  border-color: var(--gold-primary);
+  color: #fff;
+}
+
+.caliber-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.caliber-detail {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--steel-muted);
+}
+
+.caliber-price {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--gold-bright);
+  font-weight: 800;
+  margin-top: 6px;
+}
+
+.weight-selector {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.weight-slider {
+  flex-grow: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: var(--steel-dark);
+  border-radius: 4px;
+  outline: none;
+}
+
+.weight-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--crayfish-bright);
+  cursor: pointer;
+  box-shadow: 0 0 12px var(--crayfish-glow);
+}
+
+.weight-display {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  min-width: 70px;
+  text-align: right;
+}
+
+.calc-total-box {
+  background: rgba(10, 12, 16, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 26px 0 20px;
+}
+
+.calc-total-label {
+  font-size: 0.85rem;
+  color: var(--steel-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.calc-total-val {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--gold-bright);
+}
+
+/* ==========================================================================
+   Store & Atmosphere Section
+   ========================================================================== */
+.store-section {
+  background-color: var(--bg-darkest);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.store-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  height: 420px;
+}
+
+.store-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.store-card:hover img {
+  transform: scale(1.05);
+}
+
+.store-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 12, 16, 0.95) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 30px;
+}
+
+.store-card-overlay h3 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.store-card-overlay p {
+  color: var(--steel-muted);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   Location & Contacts Section
+   ========================================================================== */
+.location-section {
+  background: radial-gradient(circle at 50% 100%, rgba(229, 169, 60, 0.06) 0%, transparent 60%),
+              var(--bg-main);
+  padding-bottom: 80px;
+}
+
+.location-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.contact-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 30px 0 36px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: rgba(229, 169, 60, 0.12);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-primary);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.contact-info-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--steel-muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.contact-info-val {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-info-val:hover {
+  color: var(--gold-primary);
+}
+
+.map-wrapper {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  position: relative;
+  min-height: 440px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  background: var(--bg-surface);
+}
+
+.map-iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  border: none;
+  filter: invert(90%) hue-rotate(180deg) contrast(90%);
+}
+
+.map-direct-banner {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: rgba(13, 15, 19, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ==========================================================================
+   Cart Floating Drawer & Order Modal
+   ========================================================================== */
+.cart-floating-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 990;
+  background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-secondary) 100%);
+  color: #0c0d10;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  box-shadow: 0 10px 30px var(--gold-glow-intense), 0 0 20px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: var(--transition);
+  transform: translateY(100px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cart-floating-btn.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-floating-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.cart-counter-bubble {
+  background: #0c0d10;
+  color: var(--gold-bright);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.order-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 5, 7, 0.88);
+  backdrop-filter: blur(14px);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+.order-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.order-modal-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 580px;
+  padding: 36px;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--steel-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-close-btn:hover {
+  color: #fff;
+}
+
+.order-summary-list {
+  background: var(--bg-darkest);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 16px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 20px 0;
+}
+
+.order-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+
+.order-summary-item:last-child {
+  border-bottom: none;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+  background: var(--bg-darkest);
+  border-top: 1px solid var(--border-subtle);
+  padding: 50px 0 30px;
+  position: relative;
+  z-index: 10;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.warning-18-bar {
+  background: rgba(192, 57, 43, 0.1);
+  border: 1px solid rgba(192, 57, 43, 0.25);
+  color: #e74c3c;
+  text-align: center;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--steel-muted);
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 24px;
+}
+
+/* ==========================================================================
+   Keyframes & Responsiveness
+   ========================================================================== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .beer-card-body {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .beer-col-action {
+    grid-column: span 2;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 16px;
+  }
+  .brewery-layout,
+  .crayfish-layout,
+  .location-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hero-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stat-item:nth-child(2) {
+    border-right: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .beer-card-body {
+    grid-template-columns: 1fr;
+    padding: 20px 16px;
+    gap: 18px;
+  }
+  .beer-col-action {
+    grid-column: auto;
+    flex-direction: column;
+    align-items: stretch;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 16px;
+  }
+  .beer-card-footer {
+    justify-content: space-between;
+  }
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 12, 16, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 30px 24px;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-strong);
+    transform: translateY(-150%);
+    transition: transform 0.3s ease;
+  }
+  .nav-links.active {
+    transform: translateY(0);
+  }
+  .burger-btn {
+    display: block;
+  }
+  .nav-right .btn-outline {
+    display: none;
+  }
+  .store-grid {
+    grid-template-columns: 1fr;
+  }
+  .calibers-grid {
+    grid-template-columns: 1fr;
+  }
+  .brewery-features {
+    grid-template-columns: 1fr;
+  }
+  .hero-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .stat-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 12px;
+  }
+  .stat-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .footer-top,
+  .footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}

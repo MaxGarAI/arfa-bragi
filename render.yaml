@@ -1,0 +1,23 @@
+databases:
+  - name: bragi-game-db
+    plan: free
+    databaseName: bragi
+    user: bragi
+services:
+  - type: web
+    name: arfa-bragi
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: waitress-serve --listen=0.0.0.0:$PORT app:app
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bragi-game-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.12.8
